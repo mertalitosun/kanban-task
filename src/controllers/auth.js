@@ -1,6 +1,7 @@
 const Users = require("../models/users");
 const bcrypt = require ("bcrypt");
 const Joi = require("joi");
+const jwt = require("jsonwebtoken");
 const {APIError} = require("../middlewares/errorHandler")
 
 exports.post_register = async (req,res) =>{
@@ -69,8 +70,19 @@ exports.post_login = async (req,res) =>{
         throw new APIError("Hatalı Parola",401) //şifre kontrolü
     }
 
+    const token = jwt.sign({ id: user._id }, "kanbanTaskJwtToken", { expiresIn: '1h' });
+    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
+    
     res.status(200).json({
         success:true,
-        message:"Giriş Başarılı"
+        message:"Giriş Başarılı",
     })
 }
+
+exports.get_logout = async (req, res) => {
+    res.clearCookie('token');
+    res.status(200).json({
+        success:true,
+        message:"Çıkış Başarılı",
+    })
+};
