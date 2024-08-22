@@ -1,10 +1,23 @@
 const Users = require("../models/users");
 const bcrypt = require ("bcrypt");
+const Joi = require("joi");
 const {APIError} = require("../middlewares/errorHandler")
 
 exports.post_register = async (req,res) =>{
    const {firstName, lastName, email, password} = req.body;
 
+   const schema  = new Joi.object({
+    firstName: Joi.string().min(3).max(30).required(),
+    lastName: Joi.string().min(3).max(30).required(),
+    email: Joi.string().email().required(),
+    password:  Joi.string().min(8).max(30) 
+   })
+   const { error } = schema.validate(req.body);
+
+    if (error) {
+        throw new APIError(error.message,400)
+    }
+    
    const existingUsers = await Users.findOne({email})
 
    if(existingUsers){
