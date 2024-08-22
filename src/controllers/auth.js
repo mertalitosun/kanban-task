@@ -9,15 +9,15 @@ exports.post_register = async (req,res) =>{
    const schema  = new Joi.object({
     firstName: Joi.string().min(3).max(30).required(),
     lastName: Joi.string().min(3).max(30).required(),
-    email: Joi.string().email().required(),
-    password:  Joi.string().min(8).max(30) 
+    email: Joi.string().email().required().required(),
+    password:  Joi.string().min(6).max(30).required(), 
    })
    const { error } = schema.validate(req.body);
 
     if (error) {
         throw new APIError(error.message,400)
     }
-    
+
    const existingUsers = await Users.findOne({email})
 
    if(existingUsers){
@@ -45,6 +45,32 @@ exports.post_register = async (req,res) =>{
 }
 
 exports.post_login = async (req,res) =>{
-    console.log(req.body)
-    res.json(req.body)
+    const {email, password} = req.body;
+
+    //validations
+    const schema  = new Joi.object({
+        email: Joi.string().email().required(),
+        password:  Joi.string().min(6).max(30).required(), 
+    })
+
+    const { error } = schema.validate(req.body);
+    if (error) {
+        throw new APIError(error.message,400)
+    }
+
+    const user = await Users.findOne({email})
+    if(!user){
+        throw new APIError("Girilen maile ait kullanıcı bulunamadı.",401) //kullanıcı kontrolü
+    }
+
+    const match = await bcrypt.compare(password,user.password);
+    
+    if(!match){
+        throw new APIError("Hatalı Parola",401) //şifre kontrolü
+    }
+
+    res.status(200).json({
+        success:true,
+        message:"Giriş Başarılı"
+    })
 }
