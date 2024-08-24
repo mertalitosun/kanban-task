@@ -81,7 +81,7 @@ exports.post_lists = async (req,res) => {
        }
 }
 
-//boarda kullanıcı eklene
+//board'a kullanıcı eklene
 exports.post_add_member = async (req,res) => {
     const { email } = req.body;  
     const boardId = req.params.id; 
