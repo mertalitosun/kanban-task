@@ -7,6 +7,58 @@ const {APIError} = require("../middlewares/errorHandler")
 
 
 
+exports.post_cards = async (req,res) => {
+    const userId = req.user.id;
+    const {name,descripton,color,position} = req.body;
+    const {boardId,listId} = req.params;
+
+    try{
+        const board = await Boards.findOne({ _id: boardId });
+        const list = await Lists.findOne({ _id: listId });
+
+
+        if (!board) {
+            return res.status(404).json({
+                success: false,
+                message: "Board bulunamadı"
+            });
+        }
+
+        if (board.createdBy.toString() !== userId && !board.members.includes(userId)) {
+            return res.status(403).json({
+                success: false,
+                message: "Bu board'a erişim izniniz yok"
+            });
+        }
+
+        if(boardId.toString() !== list.boardId.toString()){
+            return res.status(404).json({
+                success: false,
+                message:"Card eklemek istediğiniz liste bu board'a ait değil"
+            })
+
+        }
+
+        const card = new Cards({
+            name,
+            descripton,
+            color,
+            position,
+            listId,
+            createdBy:userId
+        });
+        const newCard = await card.save();
+        res.status(201).json({
+            success: true,
+            data: newCard,
+            message: "Kayıt Başarılı",
+        });
+
+       }catch(err){
+        console.log(err)
+        throw new APIError("Sunucu Hatası",500)
+       }
+}
 
 exports.get_lists = async (req, res) => {
     const userId = req.user.id;
@@ -63,16 +115,17 @@ exports.post_lists = async (req,res) => {
             });
         }
 
+
         const list = new Lists({
             name,
             boardId,
             createdBy:userId
         });
 
-        const response = await list.save();
+        const newList = await list.save();
         res.status(201).json({
             success: true,
-            data: response,
+            data: newList,
             message: "Kayıt Başarılı",
         });
        }catch(err){
@@ -142,26 +195,35 @@ exports.get_boards_details = async (req,res) => {
     const boardId = req.params.id;
     try {
         const boards = await Boards.findOne({_id:boardId});
-        const lists = await Lists.find({boardId})
-
+        
         if(!boards){
             return res.status(404).json({
                 success:false,
                 message: "Board Bulunamadı"
             })
         }
-
+        
         if (boards.createdBy.toString() !== userId && !boards.members.includes(userId)) {
             return res.status(403).json({
                 success: false,
                 message: "Bu board'a erişim izniniz yok"
             });
         }
+        
+        const lists = await Lists.find({boardId});
+
+        const listsWithCards = await Promise.all(lists.map(async (list) => {
+            const cards = await Cards.find({ listId: list._id });
+            return {
+                ...list.toObject(),
+                cards
+            };
+        }));
 
         res.status(200).json({
             success: true,
             board: boards,
-            lists
+            listsWithCards
         });
     } catch (error) {
         console.error(error);

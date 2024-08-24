@@ -5,6 +5,8 @@ const cardSchema = mongoose.Schema({
     description: {type:String},
     position: {type:Number},
     color:{type:String,required:true},
-    listId: { type: mongoose.Schema.Types.ObjectId, ref: 'Lists' }
+    listId: { type: mongoose.Schema.Types.ObjectId, ref: 'Lists' },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+
 },{timestamps: true})
 module.exports = mongoose.model("Cards", cardSchema)
