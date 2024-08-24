@@ -1,8 +1,11 @@
 const Boards = require("../models/boards");
 const Lists = require("../models/lists");
 const Cards = require("../models/cards");
+const Users = require("../models/users");
 
 const {APIError} = require("../middlewares/errorHandler")
+
+
 
 
 exports.get_lists = async (req, res) => {
@@ -78,6 +81,62 @@ exports.post_lists = async (req,res) => {
        }
 }
 
+//boarda kullanıcı eklene
+exports.post_add_member = async (req,res) => {
+    const { email } = req.body;  
+    const boardId = req.params.id; 
+    const userId = req.user.id; 
+
+    try {
+        const board = await Boards.findOne({ _id: boardId });
+        if (!board) {
+            return res.status(404).json({
+                success: false,
+                message: "Board bulunamadı"
+            });
+        }
+
+        if (board.createdBy.toString() !== userId) {
+            return res.status(403).json({
+                success: false,
+                message: "Bu board'a erişim izniniz yok"
+            });
+        }
+
+        //kullanıcıyı bul
+        const user = await Users.findOne({ email });
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "Kullanıcı bulunamadı"
+            });
+        }
+
+        if (board.members.includes(user._id) && board.createdBy.toString() == userId) {
+            return res.status(400).json({
+                success: false,
+                message: "Kullanıcı zaten bu board'un bir üyesi"
+            });
+        }
+
+  
+        board.members.push(user._id);
+        if (board.members.length > 0) {
+            board.isPublic = true;
+        }
+        await board.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Üye başarıyla eklendi",
+            board
+        });
+    } catch (error) {
+        console.error(error);
+        throw new APIError("Sunucu Hatası", 500);
+    }
+}
+
 exports.get_boards_details = async (req,res) => {
     const userId = req.user.id;
     const boardId = req.params.id;
@@ -128,7 +187,7 @@ exports.post_boards = async(req,res) =>{
             boardId: board._id,
             createdBy: userId
         }));
-        
+
         const createdLists = await Lists.insertMany(listsToCreate);
         res.status(201).json({
             success: true,
