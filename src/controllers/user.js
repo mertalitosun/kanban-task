@@ -6,6 +6,77 @@ const Users = require("../models/users");
 const {APIError} = require("../middlewares/errorHandler")
 
 
+exports.update_cards = async (req, res) => {
+    const userId = req.user.id;  
+    const { boardId, listId, cardId } = req.params;
+    const { name, description, position, color } = req.body;
+
+    try {
+        //Board
+        const board = await Boards.findOne({ _id: boardId });
+
+        if (!board) {
+            return res.status(404).json({
+                success: false,
+                message: "Board bulunamadı"
+            });
+        }
+
+        if (board.createdBy.toString() !== userId && !board.members.includes(userId)) {
+            return res.status(403).json({
+                success: false,
+                message: "Bu Card'ı Güncellemeye izniniz yok"
+            });
+        }
+
+        //Liste
+        const list = await Lists.findOne({ _id: listId });
+
+        if (!list || list.boardId.toString() !== boardId) {
+            return res.status(404).json({
+                success: false,
+                message: "Liste bulunamadı veya bu board'a ait değil"
+            });
+        }
+
+        //kart 
+        const card = await Cards.findOne({ _id: cardId });
+
+        if (!card || card.listId.toString() !== listId) {
+            return res.status(404).json({
+                success: false,
+                message: "Kart bulunamadı veya bu listeye ait değil"
+            });
+        }
+
+        let updateFields = {};
+
+        if (name) updateFields.name = name;
+        if (description) updateFields.description = description;
+        if (position !== undefined) updateFields.position = position;
+        if (color) updateFields.color = color;
+
+       
+        const updatedCard = await Cards.findOneAndUpdate({ _id: cardId, listId: listId }, updateFields, { new: true });
+
+        if (!updatedCard) {
+            return res.status(404).json({
+                success: false,
+                message: "Card Bulunamadı" 
+            });
+        }
+
+        return res.status(200).json({
+            success: true, 
+            message: "Kart başarıyla güncellendi",
+            card: updatedCard
+        });
+    } catch (error) {
+        console.error(error);
+        throw new APIError("Sunucu Hatası", 500);
+    }
+};
+
 exports.delete_cards = async (req, res) => {
     const userId = req.user.id;  
     const { boardId, listId, cardId } = req.params;  

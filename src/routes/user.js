@@ -5,6 +5,7 @@ const userController = require("../controllers/user");
 
 const {authMiddleware} = require("../middlewares/auth");
 
+router.patch("/api/boards/:boardId/lists/:listId/cards/:cardId",authMiddleware,userController.update_cards);
 router.delete("/api/boards/:boardId/lists/:listId/cards/:cardId",authMiddleware,userController.delete_cards);
 router.post("/api/boards/:boardId/lists/:listId/cards",authMiddleware,userController.post_cards);
 
