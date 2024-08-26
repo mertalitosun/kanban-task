@@ -9,10 +9,12 @@ router.patch("/api/boards/:boardId/lists/:listId/cards/:cardId",authMiddleware,u
 router.delete("/api/boards/:boardId/lists/:listId/cards/:cardId",authMiddleware,userController.delete_cards);
 router.post("/api/boards/:boardId/lists/:listId/cards",authMiddleware,userController.post_cards);
 
+router.patch("/api/boards/:boardId/lists/:listId",authMiddleware,userController.update_lists);
 router.delete("/api/boards/:boardId/lists/:listId",authMiddleware,userController.delete_lists);
 router.post("/api/boards/:boardId/lists",authMiddleware,userController.post_lists);
 router.get("/api/boards/:boardId/lists",authMiddleware,userController.get_lists);
 
+router.patch("/api/boards/:boardId",authMiddleware,userController.update_boards);
 router.delete("/api/boards/:boardId",authMiddleware,userController.delete_boards);
 router.post("/api/boards/:boardId/members",authMiddleware,userController.post_add_member);//board'a kullanıcı ekleme
 router.get("/api/boards/:boardId",authMiddleware,userController.get_boards_details);

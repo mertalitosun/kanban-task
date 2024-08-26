@@ -9,7 +9,7 @@ const {APIError} = require("../middlewares/errorHandler")
 exports.update_cards = async (req, res) => {
     const userId = req.user.id;  
     const { boardId, listId, cardId } = req.params;
-    const { name, description, position, color } = req.body;
+    const { name, description, position, color,listIdNumber } = req.body;
 
     try {
         //Board
@@ -55,6 +55,7 @@ exports.update_cards = async (req, res) => {
         if (description) updateFields.description = description;
         if (position !== undefined) updateFields.position = position;
         if (color) updateFields.color = color;
+        if(listIdNumber) updateFields.listId = listIdNumber;
 
        
         const updatedCard = await Cards.findOneAndUpdate({ _id: cardId, listId: listId }, updateFields, { new: true });
@@ -75,8 +76,7 @@ exports.update_cards = async (req, res) => {
         console.error(error);
         throw new APIError("Sunucu Hatası", 500);
     }
-};
-
+}
 exports.delete_cards = async (req, res) => {
     const userId = req.user.id;  
     const { boardId, listId, cardId } = req.params;  
@@ -128,7 +128,6 @@ exports.delete_cards = async (req, res) => {
         throw new APIError("Sunucu Hatası", 500);
     }
 };
-
 exports.post_cards = async (req,res) => {
     const userId = req.user.id;
     const {name,descripton,color,position} = req.body;
@@ -180,6 +179,51 @@ exports.post_cards = async (req,res) => {
         console.log(err)
         throw new APIError("Sunucu Hatası",500)
        }
+}
+
+exports.update_lists = async (req,res) => {
+    const userId = req.user.id;
+    const { boardId, listId } = req.params;
+    const { name } = req.body;
+
+    try {
+        const board = await Boards.findOne({ _id: boardId });
+
+        if (!board) {
+            return res.status(404).json({
+                success: false,
+                message: "Board bulunamadı"
+            });
+        }
+
+        if (board.createdBy.toString() !== userId && !board.members.includes(userId)) {
+            return res.status(403).json({
+                success: false,
+                message: "Bu listeyi güncellemeye izniniz yok"
+            });
+        }
+
+        const list = await Lists.findOne({ _id: listId });
+
+        if (!list || list.boardId.toString() !== boardId) {
+            return res.status(404).json({
+                success: false,
+                message: "Liste bulunamadı veya bu board'a ait değil"
+            });
+        }
+
+        list.name = name;
+        await list.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Liste başarıyla güncellendi",
+            data: list
+        });
+    } catch (error) {
+        console.error(error);
+        throw new APIError("Sunucu Hatası", 500);
+    }
 }
 
 exports.delete_lists = async (req, res) => {
@@ -393,6 +437,42 @@ exports.get_boards_details = async (req,res) => {
     }
 }
 
+exports.update_boards = async (req,res) => {
+    const userId = req.user.id;
+    const { boardId } = req.params;
+    const { name } = req.body;
+
+    try {
+        const board = await Boards.findOne({ _id: boardId });
+
+        if (!board) {
+            return res.status(404).json({
+                success: false,
+                message: "Board bulunamadı"
+            });
+        }
+
+        if (board.createdBy.toString() !== userId && !board.members.includes(userId)) {
+            return res.status(403).json({
+                success: false,
+                message: "Bu board'u güncellemeye izniniz yok"
+            });
+        }
+
+
+        board.name = name;
+        await board.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Board başarıyla güncellendi",
+            data: board
+        });
+    } catch (error) {
+        console.error(error);
+        throw new APIError("Sunucu Hatası", 500);
+    }
+}
 exports.delete_boards = async (req, res) => {
     const userId = req.user.id;
     const boardId = req.params.boardId;
