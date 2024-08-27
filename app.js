@@ -1,20 +1,24 @@
 require("express-async-errors")
 const express = require ("express");
 const app = express();
-
+const path = require("path")
 const cookieParser = require('cookie-parser');
 const cors = require("cors");
 
 require("dotenv").config();
 app.use(express.json());
 app.use(cookieParser());
-const {errorHandlerMiddleware} = require("./src/middlewares/errorHandler")
+const {errorHandlerMiddleware} = require("./src/middlewares/errorHandler");
+
+
+
 
 //database
 require("./src/db/dbConnection")();
 const Boards = require("./src/models/boards")
 const Lists = require("./src/models/lists")
 const Cards = require("./src/models/cards")
+
 
 
 
@@ -26,10 +30,7 @@ app.use(userRoutes);
 
 
 
-app.use(cors({
-  origin: '*',
-  credentials: true
-}));
+app.use(cors({origin: '*',credentials: true}));
 
 //Hata yakalama
 app.use(errorHandlerMiddleware)
