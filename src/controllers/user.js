@@ -341,7 +341,64 @@ exports.get_lists = async (req, res) => {
     }
 };
 
-//board'a kullanıcı eklene
+
+exports.delete_members = async (req,res) => {
+    const { memberId } = req.params;  
+    const boardId = req.params.boardId; 
+    const userId = req.user.id;  
+
+    try {
+        const board = await Boards.findOne({ _id: boardId });
+        if (!board) {
+            return res.status(404).json({
+                success: false,
+                message: "Board bulunamadı"
+            });
+        }
+
+        if (board.createdBy.toString() !== userId) {
+            return res.status(403).json({
+                success: false,
+                message: "Bu board'dan üye silme izniniz yok"
+            });
+        }
+
+        if (board.createdBy.toString() === memberId) {
+            return res.status(403).json({
+                success: false,
+                message: "Bu board'un oluşturucusu silinemez"
+            });
+        }
+
+        const memberIndex = board.members.indexOf(memberId);
+        if (memberIndex === -1) {
+            return res.status(404).json({
+                success: false,
+                message: "Üye bu board'un bir parçası değil"
+            });
+        }
+
+        board.members.splice(memberIndex, 1);
+        if (board.members.length === 0) {
+            board.isPublic = false; 
+        }
+
+        await board.save();
+
+        res.status(200).json({
+            success: true,
+            message: "Üye başarıyla board'dan silindi",
+            board
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            success: false,
+            message: "Sunucu Hatası"
+        });
+    }
+}
+//board'a kullanıcı ekleme
 exports.post_add_member = async (req,res) => {
     const { email } = req.body;  
     const boardId = req.params.boardId; 
@@ -396,6 +453,7 @@ exports.post_add_member = async (req,res) => {
         throw new APIError("Sunucu Hatası", 500);
     }
 }
+
 exports.get_boards_details = async (req,res) => {
     const userId = req.user.id;
     const boardId = req.params.boardId;

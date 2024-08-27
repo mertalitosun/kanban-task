@@ -16,6 +16,8 @@ router.get("/api/boards/:boardId/lists",authMiddleware,userController.get_lists)
 
 router.patch("/api/boards/:boardId",authMiddleware,userController.update_boards);
 router.delete("/api/boards/:boardId",authMiddleware,userController.delete_boards);
+
+router.delete("/api/boards/:boardId/members/:memberId",authMiddleware,userController.delete_members);
 router.post("/api/boards/:boardId/members",authMiddleware,userController.post_add_member);//board'a kullanıcı ekleme
 router.get("/api/boards/:boardId",authMiddleware,userController.get_boards_details);
 
