@@ -398,6 +398,7 @@ exports.delete_members = async (req,res) => {
         });
     }
 }
+
 //board'a kullanıcı ekleme
 exports.post_add_member = async (req,res) => {
     const { email } = req.body;  
@@ -577,7 +578,7 @@ exports.post_boards = async(req,res) =>{
         });
         const response = await board.save();
 
-        //default lists
+        //Varsayılan Listeler
         const defaultLists = ["Backlog", " To Do", "In Progress", "Done"];
         const listsToCreate = defaultLists.map(listName => ({
             name: listName,
