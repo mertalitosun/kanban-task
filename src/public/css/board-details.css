@@ -1,0 +1,23 @@
+#listsContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+}
+.list{
+    width: 18rem;
+    padding: 20px;
+    margin: 10px;
+    background-color: #262626;
+    color: #fff;
+}
+.task{
+    padding: 10px;
+    border-radius: 10px;
+}
+.task p{
+   font-size: 13px;
+}
