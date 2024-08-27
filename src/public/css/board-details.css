@@ -21,3 +21,6 @@ a{
 .task p{
    font-size: 13px;
 }
+.bi-pencil-square{
+    font-size: 15px !important;
+}

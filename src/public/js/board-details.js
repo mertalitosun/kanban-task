@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 listElement.classList.add("list", "card");
                 listElement.innerHTML = `
                     <div class="d-flex justify-content-between"> 
-                        <h3>${list.name}</h3>
+                        <h3 id="name">${list.name} <a href="" id="edit"><i class="bi bi-pencil-square"></i></a></h3>
                         <a href="/boards/${boardId}/lists/${list._id}/cards">+</a>
                     </div>
                     <div>
