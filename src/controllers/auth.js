@@ -72,7 +72,6 @@ exports.post_login = async (req,res) =>{
 
     const token = jwt.sign({ id: user._id }, "kanbanTaskJwtToken", { expiresIn: '1h' });
     res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
-    
     res.status(200).json({
         success:true,
         message:"Giriş Başarılı",
