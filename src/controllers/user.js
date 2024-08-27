@@ -9,7 +9,7 @@ const {APIError} = require("../middlewares/errorHandler")
 exports.update_cards = async (req, res) => {
     const userId = req.user.id;  
     const { boardId, listId, cardId } = req.params;
-    const { name, description, position, color,listIdNumber } = req.body;
+    const { name, description, position, color,listIdNumber } = req.body; //listIdNumber = card'ın bağlı olduğu list'in ID numarasıdır.
 
     try {
         //Board
@@ -130,7 +130,7 @@ exports.delete_cards = async (req, res) => {
 };
 exports.post_cards = async (req,res) => {
     const userId = req.user.id;
-    const {name,descripton,color,position} = req.body;
+    const {name,description,color,position} = req.body;
     const {boardId,listId} = req.params;
 
     try{
@@ -162,7 +162,7 @@ exports.post_cards = async (req,res) => {
 
         const card = new Cards({
             name,
-            descripton,
+            description,
             color,
             position,
             listId,
@@ -603,7 +603,6 @@ exports.get_boards = async(req,res) => {
     try {
         const boards = await Boards.find({
             $or: [
-                { isPublic: true }, 
                 { createdBy: id },
                 { members: id }
             ]

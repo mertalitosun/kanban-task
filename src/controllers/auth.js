@@ -47,7 +47,6 @@ exports.post_register = async (req,res) =>{
 
 exports.post_login = async (req,res) =>{
     const {email, password} = req.body;
-    
     //validations
     const schema  = new Joi.object({
         email: Joi.string().email().required(),
