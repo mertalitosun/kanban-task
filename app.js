@@ -50,6 +50,7 @@ app.get("/boards/:id",(req,res)=>{
 })
 
 
+
 app.use(cors({origin: '*',credentials: true}));
 
 //Hata yakalama
