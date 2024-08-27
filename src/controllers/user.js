@@ -554,6 +554,9 @@ exports.get_boards = async(req,res) => {
             success: true,
             data: boards
         });
+        if(!id){
+            throw new APIError("giriş yok",401)
+        }
     } catch (error) {
         console.error(error);
         throw new APIError("Sunucu Hatası",500)
