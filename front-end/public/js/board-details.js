@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 addList.href=`/boards/${boardId}/lists`
                 listElement.innerHTML = `
                     <div class="d-flex justify-content-between"> 
-                        <h3 id="name">${list.name} <a href="" id="edit"><i class="bi bi-pencil-square"></i></a></h3>
+                        <h3 id="name">${list.name} <a href="/update/boards/${boardId}/lists/${list._id}" id="edit"><i class="bi bi-pencil-square"></i></a></h3>
                         <a href="/boards/${boardId}/lists/${list._id}/cards">+</a>
                     </div>
                     <div>

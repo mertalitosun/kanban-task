@@ -11,9 +11,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.set("view engine", "ejs"); //ejs template
-app.set("views", path.join(__dirname, "src/views"));
+app.set("views", path.join(__dirname, "front-end/views"));
 app.use(express.static("node_modules"));
-app.use("/static", express.static(path.join(__dirname, "src/public")));
+app.use("/static", express.static(path.join(__dirname, "front-end/public")));
 app.use(express.urlencoded({ extended: true }));
 
 const {errorHandlerMiddleware} = require("./src/middlewares/errorHandler");
@@ -38,8 +38,10 @@ app.use(userRoutes);
 
 
 
-
-
+//update list name
+app.get("/update/boards/:boardId/lists/:listId",(req,res)=>{
+  res.render("users/update-lists")
+})
 
 //delete card
 app.get("/delete/boards/:boardId/lists/:listId/cards/:cardId",(req,res)=>{
