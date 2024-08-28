@@ -57,6 +57,10 @@ app.get("/delete/boards/:boardId",(req,res)=>{
   res.render("users/delete-boards")
 })
 
+app.get("/boards/:boardID/lists/:listId/cards",(req,res)=>{
+  res.render("users/add-cards")
+})
+
 
 
 app.use(cors({origin: '*',credentials: true}));

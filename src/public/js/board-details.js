@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         <a href="/boards/${boardId}/lists/${list._id}/cards">+</a>
                     </div>
                     <div>
-                        ${list.cards.map(card => `<div class="task" style="background-color:${card.color} ;"><h6>${card.name}</h6> <p>${card.description}</p></div>`).join('')}
+                        ${list.cards.map(card => `<div class="task" style="background-color:${card.color}; margin-top:5px;"><h6>${card.name}</h6> <p>${card.description}</p></div>`).join('')}
                     </div>
                 `;
                 listsContainer.appendChild(listElement);

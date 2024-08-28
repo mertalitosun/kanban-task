@@ -130,7 +130,7 @@ exports.delete_cards = async (req, res) => {
 };
 exports.post_cards = async (req,res) => {
     const userId = req.user.id;
-    const {name,description,color,position} = req.body;
+    const {name,description,color,position=1} = req.body;
     const {boardId,listId} = req.params;
 
     try{
