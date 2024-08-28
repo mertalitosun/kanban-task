@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     </div>
                     <hr>
                     <a href="/boards/${boardId}/lists/${list._id}/cards" class="ms-auto">Kart Ekle +</a>
-                    <div>
+                    <div class="tasks">
                         ${list.cards.map(card => `
                         <div class="task" style="background-color:${card.color}; margin-top:5px;">
                             <div class="d-flex justify-content-between">
