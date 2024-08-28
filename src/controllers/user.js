@@ -556,7 +556,7 @@ exports.delete_boards = async (req, res) => {
         await Lists.deleteMany({ boardId: boardId });
         await Cards.deleteMany({ boardId: boardId });
 
-        await board.remove();
+        await Boards.deleteOne({ _id: boardId });
 
         res.status(200).json({
             success: true,

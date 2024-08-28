@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(data => {
         if (data.success) {
             const boardNameElement = document.getElementById("boardName");
+            const deleteBoard = document.getElementById("delete-board");
             boardNameElement.textContent = data.board.name;
             
             const listsContainer = document.getElementById("listsContainer");
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
             data.listsWithCards.forEach(list => {
                 const listElement = document.createElement("div");
                 listElement.classList.add("list", "card");
+                deleteBoard.href=`/delete/boards/${boardId}`
                 listElement.innerHTML = `
                     <div class="d-flex justify-content-between"> 
                         <h3 id="name">${list.name} <a href="" id="edit"><i class="bi bi-pencil-square"></i></a></h3>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+   <%- include('../partials/head') %>
+   <link rel="stylesheet" href="/static/css/boards.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h3 class="card-title">Yeni Board</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="addCardForm">
+                            <div class="form-group">
+                                <label for="name">Board Adı</label>
+                                <input type="name" class="form-control" id="name" name="name" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Ouştur</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <script src="/static/js/add-boards.js"></script>
+    <script src="/static/js/logout.js"></script>
+</body>
+</html>

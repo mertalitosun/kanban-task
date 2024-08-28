@@ -7,7 +7,11 @@
 <body>
     <%- include('../partials/nav') %>
     <div class="container">
-        <h1 id="boardName" class="mt-5"></h1>
+        <div class="d-flex justify-content-between mt-5">
+            <h1 id="boardName"></h1>
+            <a style="color: red;" id="delete-board">Board'u Sil</a>
+        </div>
+        
         <div id="listsContainer"></div>
     </div>
     <script src="/static/js/board-details.js"></script>

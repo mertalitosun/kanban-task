@@ -49,6 +49,14 @@ app.get("/boards/:id",(req,res)=>{
   res.render("users/board-details")
 })
 
+app.get("/add/boards",(req,res)=>{
+  res.render("users/add-boards")
+})
+
+app.get("/delete/boards/:boardId",(req,res)=>{
+  res.render("users/delete-boards")
+})
+
 
 
 app.use(cors({origin: '*',credentials: true}));
