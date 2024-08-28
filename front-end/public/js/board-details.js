@@ -40,6 +40,8 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         } else {
             alert("Board detayları yüklenemedi: " + data.message);
+            window.location.href = `/login`;
+
         }
     })
     .catch(error => console.error('Hata:', error));
