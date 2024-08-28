@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+   <%- include('../partials/head') %>
+   <link rel="stylesheet" href="/static/css/boards.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h3 class="card-title">Kart'ı Sil</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <p>Kartı'u Silmek istediğine emin misin?</p>
+                            <div class="d-flex justify-content-between">
+                                <a href="" id="delete-card" style="color: red;">Sil</a>
+                                <a href="/boards/<%= boardId %>" style="color: blue;">Vazgeç</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <script src="/static/js/delete-cards.js"></script>
+    <script src="/static/js/logout.js"></script>
+</body>
+</html>

@@ -117,12 +117,13 @@ exports.delete_cards = async (req, res) => {
         }
 
         await Cards.deleteOne({ _id: cardId });
-
-
+        
         res.status(200).json({
             success: true,
             message: "Kart başarıyla silindi"
         });
+
+
     } catch (error) {
         console.error(error);
         throw new APIError("Sunucu Hatası", 500);

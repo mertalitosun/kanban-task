@@ -41,16 +41,24 @@ app.use(userRoutes);
 
 
 
-
+//delete card
+app.get("/delete/boards/:boardId/lists/:listId/cards/:cardId",(req,res)=>{
+  const {boardId} = req.params
+  res.render("users/delete-cards",{
+    boardId
+  })
+})
 
 //new card
-app.get("/boards/:boardID/lists/:listId/cards",(req,res)=>{
+app.get("/boards/:boardId/lists/:listId/cards",(req,res)=>{
   res.render("users/add-cards")
 })
+
 //new list
 app.get("/boards/:boardId/lists",(req,res)=>{
   res.render("users/add-lists")
 })
+
 //delete boards
 app.get("/delete/boards/:boardId",(req,res)=>{
   res.render("users/delete-boards")

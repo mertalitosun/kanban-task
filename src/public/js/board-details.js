@@ -24,7 +24,16 @@ document.addEventListener("DOMContentLoaded", function() {
                         <a href="/boards/${boardId}/lists/${list._id}/cards">+</a>
                     </div>
                     <div>
-                        ${list.cards.map(card => `<div class="task" style="background-color:${card.color}; margin-top:5px;"><h6>${card.name}</h6> <p>${card.description}</p></div>`).join('')}
+                        ${list.cards.map(card => `
+                        <div class="task" style="background-color:${card.color}; margin-top:5px;">
+                            <div class="d-flex justify-content-between">
+                                <h6>${card.name}</h6> 
+                                <a href="/delete/boards/${boardId}/lists/${list._id}/cards/${card._id}">
+                                    <i class="bi bi-trash"></i>
+                                </a>
+                            </div>
+                            <p>${card.description}</p>
+                        </div>`).join('')}
                     </div>
                 `;
                 listsContainer.appendChild(listElement);

@@ -5,7 +5,6 @@ document.getElementById('addCardForm').addEventListener('submit', function(event
 
     const boardId = pathParts[2]; 
     const listId = pathParts[4]; 
-    console.log(boardId,listId)
 
     const name = document.getElementById('name').value;
     const description = document.getElementById('description').value;
