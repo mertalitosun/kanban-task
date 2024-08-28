@@ -38,9 +38,12 @@ app.use(userRoutes);
 
 
 
-//update list name
-app.get("/update/boards/:boardId/lists/:listId",(req,res)=>{
-  res.render("users/update-lists")
+//delete list
+app.get("/boards/:boardId/lists/:listId",(req,res)=>{
+  const {boardId} = req.params
+  res.render("users/delete-lists",{
+    boardId
+  })
 })
 
 //delete card

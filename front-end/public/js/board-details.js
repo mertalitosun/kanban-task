@@ -21,8 +21,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 listElement.innerHTML = `
                     <div class="d-flex justify-content-between"> 
                         <h3 id="name">${list.name} <a href="/update/boards/${boardId}/lists/${list._id}" id="edit"><i class="bi bi-pencil-square"></i></a></h3>
-                        <a href="/boards/${boardId}/lists/${list._id}/cards">+</a>
+                        <div class="d-flex justify-content-between">
+                            <a href="/boards/${boardId}/lists/${list._id}" class="m-1"> <i class="bi bi-trash"></i></a>
+                        </div>
                     </div>
+                    <hr>
+                    <a href="/boards/${boardId}/lists/${list._id}/cards" class="ms-auto">Kart Ekle +</a>
                     <div>
                         ${list.cards.map(card => `
                         <div class="task" style="background-color:${card.color}; margin-top:5px;">
