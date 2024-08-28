@@ -37,31 +37,41 @@ app.use(authRoutes);
 app.use(userRoutes);
 
 
-app.get("/login",(req,res)=>{
-  res.render("auth/login")
+
+
+
+
+
+
+//new card
+app.get("/boards/:boardID/lists/:listId/cards",(req,res)=>{
+  res.render("users/add-cards")
+})
+//new list
+app.get("/boards/:boardId/lists",(req,res)=>{
+  res.render("users/add-lists")
+})
+//delete boards
+app.get("/delete/boards/:boardId",(req,res)=>{
+  res.render("users/delete-boards")
 })
 
-app.get("/boards",(req,res)=>{
-  res.render("users/boards")
+//new board
+app.get("/add/boards",(req,res)=>{
+  res.render("users/add-boards")
 })
 
 app.get("/boards/:id",(req,res)=>{
   res.render("users/board-details")
 })
 
-app.get("/add/boards",(req,res)=>{
-  res.render("users/add-boards")
+app.get("/boards",(req,res)=>{
+  res.render("users/boards")
 })
 
-app.get("/delete/boards/:boardId",(req,res)=>{
-  res.render("users/delete-boards")
+app.get("/login",(req,res)=>{
+  res.render("auth/login")
 })
-
-app.get("/boards/:boardID/lists/:listId/cards",(req,res)=>{
-  res.render("users/add-cards")
-})
-
-
 
 app.use(cors({origin: '*',credentials: true}));
 
