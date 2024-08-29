@@ -60,6 +60,13 @@ exports.post_boards = (req, res) => {
     title: "New Boards",
   });
 };
+exports.update_boards = (req, res) => {
+  const {boardId} = req.params
+  res.render("users/update-boards", {
+    title: "Liste Güncelle",
+    boardId
+  });
+};
 exports.get_boards_details = (req, res) => {
   res.render("users/board-details", {
     title: "My Boards",

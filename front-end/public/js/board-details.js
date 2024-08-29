@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if (data.success) {
             const boardNameElement = document.getElementById("boardName");
             const deleteBoard = document.getElementById("delete-board");//board sil
+            const boardEdit = document.getElementById("boardEdit");//board düzenle
             const addList = document.getElementById("add-list");//liste ekle
             const members = document.getElementById("members");//üyeler
 
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 deleteBoard.href = `/delete/boards/${boardId}`; // board sil
                 addList.href = `/boards/${boardId}/lists`; // liste ekle
                 members.href = `/boards/${boardId}/members`; // üyeler
-                
+                boardEdit.href = `/update/boards/${boardId}` //board düzenle
                 listElement.innerHTML = `
                     <div class="d-flex justify-content-between" > 
                         <h3 id="name">${list.name} <a href="/update/boards/${boardId}/lists/${list._id}" id="edit"><i class="bi bi-pencil-square"></i></a></h3>

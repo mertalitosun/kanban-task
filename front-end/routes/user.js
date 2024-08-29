@@ -27,8 +27,10 @@ router.get("/boards/:boardId/add/members",userController.post_boards_members);
 //new board
 router.get("/add/boards",userController.post_boards);
 
-router.get("/boards/:id",userController.get_boards_details);
+//updata board
+router.get("/update/boards/:boardId",userController.update_boards);
 
+router.get("/boards/:id",userController.get_boards_details);
 router.get("/boards",userController.get_boards);
 
 module.exports = router;
