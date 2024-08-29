@@ -1,16 +1,20 @@
 exports.delete_cards= (req, res) => {
-    res.render("users/delete-cards", {
-        title: "Delete Cards",
-    });
+  const {boardId} = req.params
+  res.render("users/delete-cards", {
+    title: "Delete Cards",
+    boardId
+  });
 };
 exports.post_cards = (req, res) => {
-    res.render("users/add-cards", {
-        title: "New Cards",
-    });
+  res.render("users/add-cards", {
+    title: "New Cards",
+  });
 };
 exports.delete_lists = (req, res) => {
+  const {boardId} = req.params
   res.render("users/delete-lists", {
     title: "Delete Lists",
+    boardId
   });
 };
 exports.post_lists = (req, res) => {
