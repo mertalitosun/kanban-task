@@ -27,64 +27,24 @@ const Boards = require("./src/models/boards")
 const Lists = require("./src/models/lists")
 const Cards = require("./src/models/cards")
 
+//frontend
+const userRoutes = require("./front-end/routes/user");
+const authRoutes = require("./front-end/routes/auth");
 
+//backend
+const apiAuthRoutes = require("./src/routes/auth");
+const apiUserRoutes = require("./src/routes/user");
 
+//backend
+app.use(apiAuthRoutes);
+app.use(apiUserRoutes);
 
-const authRoutes = require("./src/routes/auth");
-const userRoutes = require("./src/routes/user");
-
-app.use(authRoutes);
+//frontend
 app.use(userRoutes);
+app.use(authRoutes);
 
 
 
-//delete list
-app.get("/boards/:boardId/lists/:listId",(req,res)=>{
-  const {boardId} = req.params
-  res.render("users/delete-lists",{
-    boardId
-  })
-})
-
-//delete card
-app.get("/delete/boards/:boardId/lists/:listId/cards/:cardId",(req,res)=>{
-  const {boardId} = req.params
-  res.render("users/delete-cards",{
-    boardId
-  })
-})
-
-//new card
-app.get("/boards/:boardId/lists/:listId/cards",(req,res)=>{
-  res.render("users/add-cards")
-})
-
-//new list
-app.get("/boards/:boardId/lists",(req,res)=>{
-  res.render("users/add-lists")
-})
-
-//delete boards
-app.get("/delete/boards/:boardId",(req,res)=>{
-  res.render("users/delete-boards")
-})
-
-//new board
-app.get("/add/boards",(req,res)=>{
-  res.render("users/add-boards")
-})
-
-app.get("/boards/:id",(req,res)=>{
-  res.render("users/board-details")
-})
-
-app.get("/boards",(req,res)=>{
-  res.render("users/boards")
-})
-
-app.get("/login",(req,res)=>{
-  res.render("auth/login")
-})
 
 app.use(cors({origin: '*',credentials: true}));
 
