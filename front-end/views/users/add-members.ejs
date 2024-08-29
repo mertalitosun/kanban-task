@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h3 class="card-title">Yeni Üye Ekle</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="addMembers">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Üye Ekle</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('addMembers').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            let boardId = window.location.pathname.split('/'); 
+            boardId = boardId[2]
+            const email = document.getElementById('email').value;
+
+            const formData = {
+                email: email,
+            };
+            fetch(`/api/v1/boards/${boardId}/members`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    window.location.href = `/boards/${boardId}`;
+                } else {
+                    alert('İşlem başarısız: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,32 +1,52 @@
 exports.delete_cards= (req, res) => {
   const {boardId} = req.params
   res.render("users/delete-cards", {
-    title: "Delete Cards",
+    title: "Kart Sil",
     boardId
   });
 };
+
 exports.post_cards = (req, res) => {
   res.render("users/add-cards", {
-    title: "New Cards",
+    title: "Yeni Kart",
   });
 };
 exports.delete_lists = (req, res) => {
   const {boardId} = req.params
   res.render("users/delete-lists", {
-    title: "Delete Lists",
+    title: "Liste Sil",
     boardId
   });
 };
 exports.post_lists = (req, res) => {
   res.render("users/add-lists", {
-    title: "New Lists",
+    title: "Yeni Liste",
   });
 };
 exports.delete_boards = (req, res) => {
   res.render("users/delete-boards", {
-    title: "Delete Boards",
+    title: "Board Sil",
   });
 };
+
+exports.delete_boards_members = (req,res)=>{
+  const {boardId} = req.params
+
+  res.render("users/delete-members", {
+    title: "Üye Sil",
+    boardId
+  });
+}
+exports.post_boards_members = (req,res)=>{
+  res.render("users/add-members", {
+    title: "Yeni Üye",
+  });
+}
+exports.get_boards_members = (req,res)=>{
+  res.render("users/members", {
+    title: "Üyeler",
+  });
+}
 exports.post_boards = (req, res) => {
   res.render("users/add-boards", {
     title: "New Boards",

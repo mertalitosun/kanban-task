@@ -6,7 +6,7 @@ const cardSchema = mongoose.Schema({
     position: {type:Number},
     color:{type:String,required:true},
     listId: { type: mongoose.Schema.Types.ObjectId, ref: 'Lists' },
-    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
 
 },{timestamps: true})
 module.exports = mongoose.model("Cards", cardSchema)

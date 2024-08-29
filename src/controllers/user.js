@@ -342,6 +342,41 @@ exports.get_lists = async (req, res) => {
     }
 };
 
+exports.get_members = async (req, res) => {
+    const userId = req.user.id;
+    const boardId = req.params.boardId;
+
+    try {
+        const board = await Boards.findOne({ _id: boardId }).populate("members"); 
+
+        if (!board) {
+            return res.status(404).json({
+                success: false,
+                message: "Board bulunamadı"
+            });
+        }
+
+        if (!board.members.some(member => member._id.toString() === userId)) {
+            return res.status(403).json({
+                success: false,
+                message: "Bu board'a erişim izniniz yok"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message:"İşlem başarılı",
+            members: board.members
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: "Sunucu Hatası"
+        });
+    }
+}
 
 exports.delete_members = async (req,res) => {
     const { memberId } = req.params;  
@@ -399,7 +434,6 @@ exports.delete_members = async (req,res) => {
         });
     }
 }
-
 //board'a kullanıcı ekleme
 exports.post_add_member = async (req,res) => {
     const { email } = req.body;  
@@ -418,7 +452,7 @@ exports.post_add_member = async (req,res) => {
         if (board.createdBy.toString() !== userId) {
             return res.status(403).json({
                 success: false,
-                message: "Bu board'a erişim izniniz yok"
+                message: "Bu board'un kurucusu değilsiniz sadece board kurucuları üye ekleme işlemi yapabilir."
             });
         }
 
