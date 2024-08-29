@@ -15,6 +15,9 @@ a{
     background-color: #262626;
     color: #fff;
     max-height: 500px;
+    
+}
+.tasks{
     overflow-y: scroll;
 }
 .task{
