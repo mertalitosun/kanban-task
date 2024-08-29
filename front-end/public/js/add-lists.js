@@ -8,7 +8,6 @@ document.getElementById('addListForm').addEventListener('submit', function(event
 
     const formData = {
         name: name,
-       
     };
 
     fetch(`/api/v1/boards/${boardId}/lists/`, {

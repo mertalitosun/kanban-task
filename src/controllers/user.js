@@ -366,7 +366,8 @@ exports.get_members = async (req, res) => {
         res.status(200).json({
             success: true,
             message:"İşlem başarılı",
-            members: board.members
+            members: board.members,
+            board:board
         });
 
     } catch (error) {
