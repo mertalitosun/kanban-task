@@ -11,10 +11,18 @@ exports.post_cards = (req, res) => {
     title: "Yeni Kart",
   });
 };
+
 exports.delete_lists = (req, res) => {
   const {boardId} = req.params
   res.render("users/delete-lists", {
     title: "Liste Sil",
+    boardId
+  });
+};
+exports.update_lists = (req, res) => {
+  const {boardId} = req.params
+  res.render("users/update-lists", {
+    title: "Liste Güncelle",
     boardId
   });
 };

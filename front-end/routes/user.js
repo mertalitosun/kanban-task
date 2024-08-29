@@ -4,7 +4,8 @@ const router = express.Router();
 const userController = require("../controllers/user");
 
 //delete list
-router.get("/boards/:boardId/lists/:listId",userController.delete_lists);
+router.get("/delete/boards/:boardId/lists/:listId",userController.delete_lists);
+router.get("/update/boards/:boardId/lists/:listId",userController.update_lists);
 
 //delete card
 router.get("/delete/boards/:boardId/lists/:listId/cards/:cardId",userController.delete_cards);

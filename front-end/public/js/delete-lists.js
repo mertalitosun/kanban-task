@@ -2,8 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const deleteList = document.getElementById("delete-list");
     const pathParts = window.location.pathname.split('/');
 
-    const boardId = pathParts[2]; 
-    const listId = pathParts[4]; 
+    const boardId = pathParts[3]; 
+    const listId = pathParts[5]; 
     deleteList.addEventListener("click",()=>{
         fetch(`/api/v1/boards/${boardId}/lists/${listId}`,{
             method:"DELETE",

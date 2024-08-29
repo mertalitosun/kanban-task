@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <div class="d-flex justify-content-between" > 
                         <h3 id="name">${list.name} <a href="/update/boards/${boardId}/lists/${list._id}" id="edit"><i class="bi bi-pencil-square"></i></a></h3>
                         <div class="d-flex justify-content-between">
-                            <a href="/boards/${boardId}/lists/${list._id}" class="m-1"> <i class="bi bi-trash"></i></a>
+                            <a href="/delete/boards/${boardId}/lists/${list._id}" class="m-1"> <i class="bi bi-trash"></i></a>
                         </div>
                     </div>
                     <hr>
