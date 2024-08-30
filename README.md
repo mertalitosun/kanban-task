@@ -55,6 +55,58 @@ Yanıtlar JSON formatında döner.
 - `404 Not Found` - Uç nokta bulunamadı.
 - `500 Internal Server Error` - Sunucu tarafında bir hata oluştu.
 
+## API Kullanımı
+
+### Kullanıcı Kaydı (Register)
+
+**POST** `/api/v1/register`
+
+Kullanıcı kaydı oluşturur.
+
+**Örnek İstek (fetch):**
+```javascript
+fetch('http://localhost:5001/api/v1/register', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'john.doe@example.com',
+        password: 'yourpassword123'
+    })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+```
+**Başarılı İstek Sonucu:**
+```
+{
+    "success": true,
+    "data": {
+        "_id": "64d9b2e7b0c16c1e00000001",
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "john.doe@example.com",
+        "password": "$2b$10$e.lm....", // hashed password
+        "__v": 0
+    },
+    "message": "Kayıt Başarılı"
+}
+
+```
+
+**Hatalı İstek Sonucu:**
+```
+{
+    "error": "Girmiş olduğunuz mail kullanılıyor."
+}
+
+
+```
+
 ## Destek
 
 Sorularınız veya sorunlarınız için [destek e-posta adresi] ile iletişime geçin.
