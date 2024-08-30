@@ -1,0 +1,494 @@
+{
+	"info": {
+		"_postman_id": "e9365156-6678-4003-95a7-2bf263cad7dc",
+		"name": "kanban-task-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37040349"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Mertali\",\n    \"lastName\":\"Tosun\",\n    \"email\": \"mertali2635@icloud.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/v1/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"mertali2631@gmail.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/v1/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/api/v1/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "boards",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "boards",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Rast Mobile\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "boards",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Rast Mobile\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9bed35a1a22cfb3c390ed",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9bed35a1a22cfb3c390ed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "boards",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9dbcb7a514eb2a769864d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9dbcb7a514eb2a769864d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "board-details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66cf3016283f9dc5d3840817",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66cf3016283f9dc5d3840817"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "members",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"mertali2631@gmail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9bed35a1a22cfb3c390ed/members",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9bed35a1a22cfb3c390ed",
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "members",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9bed35a1a22cfb3c390ed/members/66c7750cc5a53533dd319b0c",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9bed35a1a22cfb3c390ed",
+						"members",
+						"66c7750cc5a53533dd319b0c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "members",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9bed35a1a22cfb3c390ed/members",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9bed35a1a22cfb3c390ed",
+						"members"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lists",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Eksikler\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9bed35a1a22cfb3c390ed/lists",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9bed35a1a22cfb3c390ed",
+						"lists"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lists",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Backlog\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9bed35a1a22cfb3c390ed/lists/66ccf773918ffe27851fa581",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9bed35a1a22cfb3c390ed",
+						"lists",
+						"66ccf773918ffe27851fa581"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lists",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9bed35a1a22cfb3c390ed/lists/66c9c05162dfaf7a3007289e/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9bed35a1a22cfb3c390ed",
+						"lists",
+						"66c9c05162dfaf7a3007289e",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cards",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"kartların sayısı4\",\n    \"description\":\"kartlaeın sayısı\",\n    \"color\":\"red\",\n    \"position\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9bed35a1a22cfb3c390ed/lists/66c9bed35a1a22cfb3c390f0/cards",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9bed35a1a22cfb3c390ed",
+						"lists",
+						"66c9bed35a1a22cfb3c390f0",
+						"cards"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cards",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"güncellenmiş card\",\n    \"position\":2,\n    \"description\":\"deneme\",\n    \"listIdNumber\":\"66c9bed35a1a22cfb3c390f1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9bed35a1a22cfb3c390ed/lists/66c9bed35a1a22cfb3c390f0/cards/66c9db537a514eb2a7698637",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9bed35a1a22cfb3c390ed",
+						"lists",
+						"66c9bed35a1a22cfb3c390f0",
+						"cards",
+						"66c9db537a514eb2a7698637"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cards",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5001/api/v1/boards/66c9dbcb7a514eb2a769864d/lists/66c9dbcc7a514eb2a769864f/cards/66cf1b8c7ddc1d9d34102571",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"v1",
+						"boards",
+						"66c9dbcb7a514eb2a769864d",
+						"lists",
+						"66c9dbcc7a514eb2a769864f",
+						"cards",
+						"66cf1b8c7ddc1d9d34102571"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
