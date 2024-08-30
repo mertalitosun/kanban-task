@@ -131,14 +131,13 @@ exports.delete_cards = async (req, res) => {
 };
 exports.post_cards = async (req,res) => {
     const userId = req.user.id;
-    const {name,description,color,position=1} = req.body;
+    const {name,description,color,position} = req.body;
     const {boardId,listId} = req.params;
 
     try{
         const board = await Boards.findOne({ _id: boardId });
         const list = await Lists.findOne({ _id: listId });
-
-
+        const cards = await Cards.countDocuments({listId}); //kartların toplam sayısını verir
         if (!board) {
             return res.status(404).json({
                 success: false,
@@ -158,14 +157,13 @@ exports.post_cards = async (req,res) => {
                 success: false,
                 message:"Card eklemek istediğiniz liste bu board'a ait değil"
             })
-
         }
 
         const card = new Cards({
             name,
             description,
             color,
-            position,
+            position: cards + 1, // toplam kartların bir fazlasını position'a yazar
             listId,
             createdBy:userId
         });
