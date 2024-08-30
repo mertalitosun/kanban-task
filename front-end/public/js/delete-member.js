@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const boardId = pathParts[2]; 
     const memberId = pathParts[4]; 
-    deleteMember.addEventListener("click",()=>{
+    deleteMember.addEventListener("click",(e)=>{
+        e.preventDefault()
         fetch(`/api/v1/boards/${boardId}/members/${memberId}`,{
             method:"DELETE",
         })

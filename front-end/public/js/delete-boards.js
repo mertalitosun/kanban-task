@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
     const deleteBoard = document.getElementById("delete");
     const boardId = window.location.pathname.split('/').pop(); 
-    deleteBoard.addEventListener("click",()=>{
+    deleteBoard.addEventListener("click",(e)=>{
+        e.preventDefault()
         fetch(`/api/v1/boards/${boardId}`,{
             method:"DELETE"
         })

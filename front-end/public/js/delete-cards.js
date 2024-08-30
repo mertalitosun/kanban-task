@@ -5,9 +5,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const boardId = pathParts[3]; 
     const listId = pathParts[5]; 
     const cardId = pathParts[7]; 
-    deleteCard.addEventListener("click",()=>{
+    deleteCard.addEventListener("click",(e)=>{
+        e.preventDefault()
         fetch(`/api/v1/boards/${boardId}/lists/${listId}/cards/${cardId}`,{
             method:"DELETE",
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
         .then(response =>response.json())
         .then(data => {
