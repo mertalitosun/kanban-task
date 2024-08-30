@@ -64,6 +64,8 @@ Yanıtlar JSON formatında döner.
 Kullanıcı kaydı oluşturur.
 
 **Örnek İstek (fetch):**
+**Kullanıcı Kayıt**
+
 ```javascript
 fetch('http://localhost:5001/api/v1/register', {
     method: 'POST',
@@ -71,10 +73,10 @@ fetch('http://localhost:5001/api/v1/register', {
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-        firstName: 'John',
-        lastName: 'Doe',
-        email: 'john.doe@example.com',
-        password: 'yourpassword123'
+        firstName: 'mertali',
+        lastName: 'tosun',
+        email: 'mertalitosun@mail.com',
+        password: 'mertalitosun123'
     })
 })
 .then(response => response.json())
@@ -87,9 +89,9 @@ fetch('http://localhost:5001/api/v1/register', {
     "success": true,
     "data": {
         "_id": "64d9b2e7b0c16c1e00000001",
-        "firstName": "John",
-        "lastName": "Doe",
-        "email": "john.doe@example.com",
+        "firstName": "mertali",
+        "lastName": "tosun",
+        "email": "mertalitosun@mail.com",
         "password": "$2b$10$e.lm....", // hashed password
         "__v": 0
     },
@@ -103,6 +105,43 @@ fetch('http://localhost:5001/api/v1/register', {
 {
     "error": "Girmiş olduğunuz mail kullanılıyor."
 }
+
+
+```
+
+**Kullanıcı Girişi:**
+```javascript
+fetch('http://localhost:5001/api/v1/login', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        email: 'mertalitosun@mail.com',
+        password: 'mertalitosun123'
+    })
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+
+```
+**Başarılı İstek Sonucu:**
+```
+{
+    "success": true,
+    "message": "Giriş Başarılı"
+}
+
+
+```
+
+**Hatalı İstek Sonucu:**
+```
+{
+    "error": "Girilen maile ait kullanıcı bulunamadı."
+}
+
 
 
 ```
