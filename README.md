@@ -38,7 +38,7 @@ Boards API, kanban tablosu uygulamaları için bir arka uç API'sidir. Bu API, p
 
 ### Temel Uç Noktalar
 
-API uç noktaları hakkında detaylı bilgi için [Postman Collection](path_to_postman_collection) dosyasını kullanabilirsiniz. Bu koleksiyon, API'nin tüm uç noktalarını test etmenizi sağlar.
+API uç noktaları hakkında detaylı bilgi için [Postman Collection](https://github.com/mertalitosun/kanban-task/tree/main/postman) dosyasını kullanabilirsiniz. Bu koleksiyon, API'nin tüm uç noktalarını test etmenizi sağlar.
 
 ## Kimlik Doğrulama
 
