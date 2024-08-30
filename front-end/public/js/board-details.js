@@ -39,9 +39,14 @@ document.addEventListener("DOMContentLoaded", function() {
                         <div class="task" style="background-color:${card.color}; margin-top:5px;" draggable="true" id="${card._id}" data-old-list-id="${list._id}" cardColor="${card.color}">
                             <div class="d-flex justify-content-between">
                                 <h6>${card.name}</h6> 
-                                <a href="/delete/boards/${boardId}/lists/${list._id}/cards/${card._id}">
-                                    <i class="bi bi-trash"></i>
-                                </a>
+                                <div class="d-flex justify-content-between">
+                                    <a href="/update/boards/${boardId}/lists/${list._id}/cards/${card._id}">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <a href="/delete/boards/${boardId}/lists/${list._id}/cards/${card._id}">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </div>
                             </div>
                             <p>${card.description}</p>
                         </div>`).join('')}

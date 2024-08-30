@@ -1,3 +1,11 @@
+exports.update_cards = (req, res) => {
+  const {boardId} = req.params
+  res.render("users/update-cards", {
+    title: "Kart Güncelle",
+    boardId
+  });
+};
+
 exports.delete_cards= (req, res) => {
   const {boardId} = req.params
   res.render("users/delete-cards", {

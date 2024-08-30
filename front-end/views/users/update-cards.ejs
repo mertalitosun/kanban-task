@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+   <%- include('../partials/head') %>
+   <link rel="stylesheet" href="/static/css/boards.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h3 class="card-title">Kart Güncelle</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="updateCards">
+                            <div class="form-group">
+                                <label for="name">Kart Adı</label>
+                                <input type="name" class="form-control" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Kart Açıklaması</label>
+                                <input type="text" class="form-control" id="description" name="description" >
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Güncelle</button>
+                            <a href="/boards/<%= boardId %>" class="btn btn-danger mt-3">Vazgeç</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <script src="/static/js/update-cards.js"></script>
+    <script src="/static/js/logout.js"></script>
+</body>
+</html>
