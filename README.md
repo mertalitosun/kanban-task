@@ -97,7 +97,6 @@ fetch('http://localhost:5001/api/v1/register', {
     },
     "message": "Kayıt Başarılı"
 }
-
 ```
 
 **Hatalı İstek Sonucu:**
@@ -105,8 +104,6 @@ fetch('http://localhost:5001/api/v1/register', {
 {
     "error": "Girmiş olduğunuz mail kullanılıyor."
 }
-
-
 ```
 
 **Kullanıcı Girişi:**
@@ -124,7 +121,6 @@ fetch('http://localhost:5001/api/v1/login', {
 .then(response => response.json())
 .then(data => console.log(data))
 .catch(error => console.error('Error:', error));
-
 ```
 **Başarılı İstek Sonucu:**
 ```
@@ -132,8 +128,6 @@ fetch('http://localhost:5001/api/v1/login', {
     "success": true,
     "message": "Giriş Başarılı"
 }
-
-
 ```
 
 **Hatalı İstek Sonucu:**
@@ -141,9 +135,6 @@ fetch('http://localhost:5001/api/v1/login', {
 {
     "error": "Girilen maile ait kullanıcı bulunamadı."
 }
-
-
-
 ```
 
 ## Destek
