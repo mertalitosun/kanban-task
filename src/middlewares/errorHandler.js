@@ -17,5 +17,4 @@ const errorHandlerMiddleware = (err,req,res,next) =>{
         message:"Sunucu Hatası"
     })
 }
-
 module.exports = {APIError, errorHandlerMiddleware};
