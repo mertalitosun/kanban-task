@@ -139,7 +139,7 @@ fetch('http://localhost:5001/api/v1/login', {
 
 ## Destek
 
-Sorularınız veya sorunlarınız için [destek e-posta adresi] ile iletişime geçin.
+Sorularınız veya sorunlarınız için benimle iletişime geçin.
 
 ## Sürüm Notları
 
