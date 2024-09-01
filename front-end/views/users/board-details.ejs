@@ -7,6 +7,11 @@
 <body>
     <%- include('../partials/nav') %>
     <div class="container">
+        <div class="visitedPages mt-3">
+            <h6>Son Ziyaret Edilen Sayfalar</h6>
+            <div id="historyList"></div>
+        </div>
+
         <div class="d-flex justify-content-between mt-5">
             <div class="d-flex justify-content-between align-items-center fs-3" id="boards-button">
                 <a href="/boards" style="color: rgb(79, 80, 80);"><i class="bi bi-backspace"></i> Boards</a>
@@ -26,5 +31,22 @@
     </div>
     <script src="/static/js/board-details.js"></script>
     <script src="/static/js/logout.js"></script>
+    <script src="/static/js/visitedPages.js"></script>
+
+    <!-- Son ziyaret edilen sayfalar frontend -->
+    <script>
+        const historyList = document.getElementById('historyList');
+
+        const pages = JSON.parse(localStorage.getItem('visitedPages')) || [];
+
+        pages.forEach(page => {
+            const item = document.createElement('a');
+            item.style.color = "blue"
+            item.textContent = " /" + page.title;
+            item.href = page.url
+
+            historyList.appendChild(item);
+        });
+    </script>
 </body>
 </html>
