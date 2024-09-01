@@ -6,23 +6,23 @@ Boards API, kanban tablosu uygulamaları için bir arka uç API'sidir. Bu API, p
 
 ### Kurulum Adımları
 
-2. Bağımlılıkları yükleyin:
+1. Bağımlılıkları yükleyin:
     ```
     npm install
     ```
 
-3. `.env` dosyasını oluşturun ve aşağıdaki bilgileri ekleyin:
+2. `.env` dosyasını oluşturun ve aşağıdaki bilgileri ekleyin:
     ```env
     DB_URL="<your_database>"
     ```
     Kendi veritabanı bilgilerinizi buraya girin.
 
-4. (Opsiyonel) Port ayarlarını `.env` dosyasına ekleyebilirsiniz. Varsayılan olarak, API 5001 portunda çalışacaktır. Örneğin:
+3. (Opsiyonel) Port ayarlarını `.env` dosyasına ekleyebilirsiniz. Varsayılan olarak, API 5001 portunda çalışacaktır. Örneğin:
     ```env
     PORT=5001
     ```
 
-5. Sunucuyu başlatın:
+4. Sunucuyu başlatın:
     ```
     npm start
     ```
