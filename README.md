@@ -1,6 +1,6 @@
 # Boards API
 
-Boards API, kanban tablosu uygulamaları için bir arka uç API'sidir. Bu API, panoları yönetmek ve kullanıcılar arasında etkileşim sağlamak için gerekli uç noktaları sunar.
+Boards API, görev tablosu uygulamaları için bir arka uç API'sidir. Bu API, panoları yönetmek ve kullanıcılar arasında etkileşim sağlamak için gerekli uç noktaları sunar.
 
 ## Kurulum
 
