@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <td>${member._id.toString() === data.board.createdBy.toString() ? `(admin)${member.firstName}`:member.firstName}</td>
                     <td>${member.lastName}</td>
                     <td>${member.email}</td>
-                    <td><a href="/boards/${boardId}/members/${member._id}" class="m-1"> <i class="bi bi-trash"></i></a></td>
+                    <td><a href="/boards/${boardId}/members/${member._id}" class="m-1 text-danger"> <i class="bi bi-trash"></i></a></td>
                 </tr>
             `;
             tableBody.appendChild(members);
