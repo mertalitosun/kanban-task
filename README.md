@@ -4,11 +4,6 @@ Boards API, kanban tablosu uygulamaları için bir arka uç API'sidir. Bu API, p
 
 ## Kurulum
 
-### Gereksinimler
-
-- Node.js v14+
-- npm v6+
-
 ### Kurulum Adımları
 
 1. Depoyu klonlayın:
