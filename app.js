@@ -16,7 +16,7 @@ app.use(express.static("node_modules"));
 app.use("/static", express.static(path.join(__dirname, "front-end/public")));
 app.use(express.urlencoded({ extended: true }));
 
-const {errorHandlerMiddleware} = require("./src/middlewares/errorHandler");
+const {errorHandlerMiddleware,notFoundMiddleware} = require("./src/middlewares/errorHandler");
 
 
 
@@ -43,7 +43,7 @@ app.use(apiUserRoutes);
 app.use(userRoutes);
 app.use(authRoutes);
 
-
+app.use(notFoundMiddleware);
 
 
 app.use(cors({origin: '*',credentials: true}));

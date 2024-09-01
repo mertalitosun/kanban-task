@@ -17,4 +17,10 @@ const errorHandlerMiddleware = (err,req,res,next) =>{
         message:"Sunucu Hatası"
     })
 }
-module.exports = {APIError, errorHandlerMiddleware};
+
+const notFoundMiddleware = (req, res, next) => {
+    const error = new APIError('Bu Sayfa Bulunamadı', 404);
+    next(error);
+}
+
+module.exports = {APIError, errorHandlerMiddleware,notFoundMiddleware};
