@@ -35,6 +35,8 @@ const authRoutes = require("./front-end/routes/auth");
 const apiAuthRoutes = require("./src/routes/auth");
 const apiUserRoutes = require("./src/routes/user");
 
+app.use(cors({origin: '*',credentials: true}));
+
 //backend
 app.use(apiAuthRoutes);
 app.use(apiUserRoutes);
@@ -46,7 +48,6 @@ app.use(authRoutes);
 app.use(notFoundMiddleware);
 
 
-app.use(cors({origin: '*',credentials: true}));
 
 //Hata yakalama
 app.use(errorHandlerMiddleware)
