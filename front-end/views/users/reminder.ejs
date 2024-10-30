@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+   <%- include('../partials/head') %>
+   <link rel="stylesheet" href="/static/css/boards.css">
+</head>
+<body>
+    <%- include('../partials/nav') %>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-5">
+                    <div class="card-header">
+                        <h3 class="card-title">Hatırlatıcı Kur</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="reminderForm">
+                            <div class="form-group">
+                                <input type="hidden" name="cardName" id="cardName" value="">
+                                <input type="hidden" name="cardDescription" id="cardDescription" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-label">Alıcı E-posta:</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="datetime" class="form-label">Gönderim Zamanı:</label>
+                                <input type="datetime-local" id="datetime" name="datetime" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary mt-3">Hatırlat</button>
+                            <a href="/boards/<%= boardId %>" class="btn btn-danger mt-3">Vazgeç</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <script src="/static/js/reminder.js"></script>
+    <script src="/static/js/logout.js"></script>
+    <script src="/static/js/visitedPages.js"></script>
+</body>
+</html>

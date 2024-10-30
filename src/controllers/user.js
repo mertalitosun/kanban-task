@@ -2,9 +2,73 @@ const Boards = require("../models/boards");
 const Lists = require("../models/lists");
 const Cards = require("../models/cards");
 const Users = require("../models/users");
-
+const moment = require('moment'); 
 const {APIError} = require("../middlewares/errorHandler")
+const {sendReminderMail} = require("../helpers/nodemailer");
 
+exports.reminder = async (req, res) => {
+    const userId = req.user.id;  
+    const { boardId, listId, cardId } = req.params;
+    const { email, datetime, cardName, cardDescription} = req.body;
+
+    try {
+        //Board
+        const board = await Boards.findOne({ _id: boardId });
+
+        if (!board) {
+            return res.status(404).json({
+                success: false,
+                message: "Board bulunamadı"
+            });
+        }
+
+        if (board.createdBy.toString() !== userId && !board.members.includes(userId)) {
+            return res.status(403).json({
+                success: false,
+                message: "Bu Card'a hatırlatma oluşturma izniniz yok"
+            });
+        }
+
+        //Liste
+        const list = await Lists.findOne({ _id: listId });
+
+        if (!list || list.boardId.toString() !== boardId) {
+            return res.status(404).json({
+                success: false,
+                message: "Liste bulunamadı veya bu board'a ait değil"
+            });
+        }
+
+        //kart 
+        const card = await Cards.findOne({ _id: cardId });
+
+        if (!card || card.listId.toString() !== listId) {
+            return res.status(404).json({
+                success: false,
+                message: "Kart bulunamadı veya bu listeye ait değil"
+            });
+        }
+       
+        const sendTime = moment(datetime).utc().valueOf(); 
+        const now = moment().valueOf(); 
+        const delay = sendTime - now;
+
+        const subject = ` ${board.name} Tablosundan Hatırlatman Var!!!`
+        const text = `Kart Adı : ${cardName ? cardName : ""} <br> Kart Açıklaması: ${cardDescription ? cardDescription : "Kart detayı mevcut değil"} <br> İncele: <a href="http://35.173.229.134:8000/boards/${boardId}">${board.name}</a>`
+
+        if (delay > 0) {
+            setTimeout(() => {sendReminderMail(email,subject,text);}, delay);
+        }
+
+        return res.status(200).json({
+            success: true, 
+            message: "Hatırlatıcı başarıyla oluşturuldu",
+        });
+    } catch (error) {
+        console.error(error);
+        throw new APIError("Sunucu Hatası", 500);
+    }
+}
 
 exports.update_cards = async (req, res) => {
     const userId = req.user.id;  

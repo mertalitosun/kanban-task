@@ -1,3 +1,11 @@
+exports.get_reminder = (req,res) => {
+  const {boardId} = req.params
+  res.render("users/reminder", {
+    title: "Hatırlatıcı Kur",
+    boardId
+  });
+}
+
 exports.update_cards = (req, res) => {
   const {boardId} = req.params
   res.render("users/update-cards", {

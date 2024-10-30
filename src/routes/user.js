@@ -5,6 +5,7 @@ const userController = require("../controllers/user");
 
 const {authMiddleware} = require("../middlewares/auth");
 
+router.post("/api/v1/reminder/boards/:boardId/lists/:listId/cards/:cardId",authMiddleware,userController.reminder);
 router.patch("/api/v1/boards/:boardId/lists/:listId/cards/:cardId",authMiddleware,userController.update_cards);
 router.delete("/api/v1/boards/:boardId/lists/:listId/cards/:cardId",authMiddleware,userController.delete_cards);
 router.post("/api/v1/boards/:boardId/lists/:listId/cards",authMiddleware,userController.post_cards);

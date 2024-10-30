@@ -40,10 +40,13 @@ document.addEventListener("DOMContentLoaded", function() {
                             <div class="d-flex justify-content-between">
                                 <h6>${card.name}</h6> 
                                 <div class="d-flex justify-content-between">
-                                    <a href="/update/boards/${boardId}/lists/${list._id}/cards/${card._id}">
+                                    <a href="/reminder/boards/${boardId}/lists/${list._id}/cards/${card._id}" class="mx-1">
+                                        <i class="bi bi-alarm"></i>
+                                    </a>
+                                    <a href="/update/boards/${boardId}/lists/${list._id}/cards/${card._id}" class="mx-1">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <a href="/delete/boards/${boardId}/lists/${list._id}/cards/${card._id}">
+                                    <a href="/delete/boards/${boardId}/lists/${list._id}/cards/${card._id}" class="mx-1">
                                         <i class="bi bi-trash"></i>
                                     </a>
                                 </div>

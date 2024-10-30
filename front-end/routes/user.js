@@ -3,6 +3,10 @@ const router = express.Router();
 
 const userController = require("../controllers/user");
 
+//reminder card
+
+router.get("/reminder/boards/:boardId/lists/:listId/cards/:cardId",userController.get_reminder);
+
 //delete list
 router.get("/delete/boards/:boardId/lists/:listId",userController.delete_lists);
 router.get("/update/boards/:boardId/lists/:listId",userController.update_lists);
@@ -29,7 +33,7 @@ router.get("/boards/:boardId/add/members",userController.post_boards_members);
 //new board
 router.get("/add/boards",userController.post_boards);
 
-//updata board
+//update board
 router.get("/update/boards/:boardId",userController.update_boards);
 
 router.get("/boards/:id",userController.get_boards_details);
