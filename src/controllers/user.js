@@ -60,15 +60,15 @@ exports.reminder = async (req, res) => {
         const text = `
         <div>
             <h1>Kart Adı</h1>
-            <h3 style="color:#dfdada;">${card.name ? card.name : ""}</h3>
+            <h3 style="color:#aaa;">${card.name ? card.name : ""}</h3>
         </div>
         <div>
             <h1>Kart Açıklaması</h1>
-            <h3 style="color:#dfdada;">${card.description ? card.description : "Kart detayı mevcut değil"}</h3>
+            <h3 style="color:#aaa;">${card.description ? card.description : "Kart detayı mevcut değil"}</h3>
         </div>
         <div>
             <h1>İncele</h1>
-            <h3 style="color:#dfdada !important;"><i><a href="http://35.173.229.134:8000/boards/${boardId}">${board.name}</a></i></h3>
+            <h3 style="color:#aaa !important;"><i><a href="http://35.173.229.134:8000/boards/${boardId}">${board.name}</a></i></h3>
         </div>
         `
 
