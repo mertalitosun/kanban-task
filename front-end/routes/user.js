@@ -4,7 +4,6 @@ const router = express.Router();
 const userController = require("../controllers/user");
 
 //reminder card
-
 router.get("/reminder/boards/:boardId/lists/:listId/cards/:cardId",userController.get_reminder);
 
 //delete list

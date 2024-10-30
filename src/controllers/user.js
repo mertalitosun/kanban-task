@@ -9,9 +9,12 @@ const {sendReminderMail} = require("../helpers/nodemailer");
 exports.reminder = async (req, res) => {
     const userId = req.user.id;  
     const { boardId, listId, cardId } = req.params;
-    const { email, datetime, cardName, cardDescription} = req.body;
+    const {datetime} = req.body;
 
     try {
+        //User
+        const user = await Users.findOne({ _id: userId });
+        
         //Board
         const board = await Boards.findOne({ _id: boardId });
 
@@ -54,10 +57,30 @@ exports.reminder = async (req, res) => {
         const delay = sendTime - now;
 
         const subject = ` ${board.name} Tablosundan Hatırlatman Var!!!`
-        const text = `Kart Adı : ${cardName ? cardName : ""} <br> Kart Açıklaması: ${cardDescription ? cardDescription : "Kart detayı mevcut değil"} <br> İncele: <a href="http://35.173.229.134:8000/boards/${boardId}">${board.name}</a>`
+        const text = `
+        <div>
+            <h1>Kart Adı</h1>
+            <h3 style="color:#dfdada;">${card.name ? card.name : ""}</h3>
+        </div>
+        <div>
+            <h1>Kart Açıklaması</h1>
+            <h3 style="color:#dfdada;">${card.description ? card.description : "Kart detayı mevcut değil"}</h3>
+        </div>
+        <div>
+            <h1>İncele</h1>
+            <h3 style="color:#dfdada !important;"><i><a href="http://35.173.229.134:8000/boards/${boardId}">${board.name}</a></i></h3>
+        </div>
+        `
 
         if (delay > 0) {
-            setTimeout(() => {sendReminderMail(email,subject,text);}, delay);
+            setTimeout(async () => {
+                try {
+                    await sendReminderMail(user.email, subject, text);
+                    console.log("E-posta başarıyla gönderildi.");
+                } catch (error) {
+                    console.error("E-posta gönderim hatası:", error.message);
+                }
+            }, delay);
         }
 
         return res.status(200).json({
@@ -65,7 +88,7 @@ exports.reminder = async (req, res) => {
             message: "Hatırlatıcı başarıyla oluşturuldu",
         });
     } catch (error) {
-        console.error(error);
+        console.error(error.message);
         throw new APIError("Sunucu Hatası", 500);
     }
 }

@@ -7,15 +7,10 @@ document.getElementById('reminderForm').addEventListener('submit', function(even
     const listId = pathParts[5]; 
     const cardId = pathParts[7]; 
 
-    const email = document.getElementById('email').value;
     const datetime = document.getElementById('datetime').value;
-    const cardName = document.getElementById('cardName').value;
-    const cardDescription = document.getElementById('cardDescription').value;
+   
     const formData = {
-        email: email,
         datetime:datetime,
-        cardName,
-        cardDescription
     };
 
     fetch(`/api/v1/reminder/boards/${boardId}/lists/${listId}/cards/${cardId}`, {
@@ -35,6 +30,6 @@ document.getElementById('reminderForm').addEventListener('submit', function(even
         }
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('Error:', error.message);
     });
 });

@@ -13,7 +13,7 @@ const sendReminderMail = async (to, subject, text) => {
     from: "mertali2631@gmail.com",
     to: to,
     subject: subject,
-    text: text,
+    html: text,
   };
 
   try {
@@ -24,4 +24,4 @@ const sendReminderMail = async (to, subject, text) => {
   }
 };
 
-module.exports = sendReminderMail;
+module.exports = {sendReminderMail};
