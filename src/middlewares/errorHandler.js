@@ -15,6 +15,7 @@ const errorHandlerMiddleware = (err,req,res,next) =>{
     return res.status(500).json({
         success:false,
         message:"Sunucu Hatası",
+	messagess:err.message
     })
 }
 
