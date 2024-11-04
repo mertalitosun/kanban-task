@@ -2,7 +2,6 @@
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 a{
     text-decoration: none;
@@ -29,4 +28,10 @@ a{
 }
 .bi-pencil-square{
     font-size: 15px !important;
+}
+@media (max-width: 768px) {
+ .board-navbar{
+        display:block !important;
+ }
+
 }

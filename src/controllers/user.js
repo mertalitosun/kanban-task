@@ -93,6 +93,58 @@ exports.reminder = async (req, res) => {
     }
 }
 
+exports.get_cards = async (req, res) => {
+    const userId = req.user.id;  
+    const { boardId, listId, cardId } = req.params;
+    try {
+        //Board
+        const board = await Boards.findOne({ _id: boardId });
+
+        if (!board) {
+            return res.status(404).json({
+                success: false,
+                message: "Board bulunamadı"
+            });
+        }
+
+        if (board.createdBy.toString() !== userId && !board.members.includes(userId)) {
+            return res.status(403).json({
+                success: false,
+                message: "Bu Card'ı Düzenlemeye izniniz yok"
+            });
+        }
+
+        //Liste
+        const list = await Lists.findOne({ _id: listId });
+
+        if (!list || list.boardId.toString() !== boardId) {
+            return res.status(404).json({
+                success: false,
+                message: "Liste bulunamadı veya bu board'a ait değil"
+            });
+        }
+
+        //kart 
+        const card = await Cards.findOne({ _id: cardId });
+
+        if (!card || card.listId.toString() !== listId) {
+            return res.status(404).json({
+                success: false,
+                message: "Kart bulunamadı veya bu listeye ait değil"
+            });
+        }
+        
+
+        return res.status(200).json({
+            success: true, 
+            message: "Kart başarıyla getirildi",
+            card: card
+        });
+    } catch (error) {
+        console.error(error);
+        throw new APIError("Sunucu Hatası", 500);
+    }
+}
 exports.update_cards = async (req, res) => {
     const userId = req.user.id;  
     const { boardId, listId, cardId } = req.params;
