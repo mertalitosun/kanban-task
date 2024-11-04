@@ -52,7 +52,7 @@ app.use(notFoundMiddleware);
 //Hata yakalama
 app.use(errorHandlerMiddleware)
 
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`Sunucu ${port} portunda başlatıldı.`);
 });

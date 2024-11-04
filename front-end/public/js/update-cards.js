@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     .then(response => response.json())
     .then(data => {
         if (data) {
+            console.log('API yanıtı:', data);
             const card = data.card; // Kart bilgilerini al
             const nameInput = document.getElementById("name");
             const descriptionInput = document.getElementById("description");
