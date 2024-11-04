@@ -20,7 +20,7 @@ const sendReminderMail = async (to, subject, text) => {
     let info = await transporter.sendMail(mailOptions);
     console.log("mail Gönderildi:" + info.response);
   } catch (err) {
-    console.log(err);
+    console.error(err.message);
   }
 };
 

@@ -31,7 +31,7 @@ a{
 }
 @media (max-width: 768px) {
  .board-navbar{
-        display:block !important;
+	display:block !important;
  }
 
 }
