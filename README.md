@@ -33,9 +33,6 @@ Boards API, görev tablosu uygulamaları için bir arka uç API'sidir. Bu API, p
 
 API uç noktaları hakkında detaylı bilgi için [Postman Collection](https://github.com/mertalitosun/kanban-task/tree/main/postman) dosyasını kullanabilirsiniz. Bu koleksiyon, API'nin tüm uç noktalarını test etmenizi sağlar.
 
-## Kimlik Doğrulama
-
-API'nin kimlik doğrulama gereksinimleri yoktur.
 
 ## Yanıt Formatları
 
@@ -49,6 +46,79 @@ Yanıtlar JSON formatında döner.
 - `500 Internal Server Error` - Sunucu tarafında bir hata oluştu.
 
 ## API Kullanımı
+
+### API Endpoints
+
+## Boards (Panolar)
+
+**Endpoint:** `GET /api/v1/boards`  
+Kullanıcının erişebildiği tüm panoları getirir.
+
+**Endpoint:** `POST /api/v1/boards`  
+Yeni bir pano oluşturur.
+
+**Endpoint:** `GET /api/v1/boards/:boardId`  
+Belirtilen `boardId`'ye sahip panonun detaylarını getirir.
+
+**Endpoint:** `PATCH /api/v1/boards/:boardId`  
+Belirtilen `boardId`'ye sahip panoyu günceller.
+
+**Endpoint:** `DELETE /api/v1/boards/:boardId`  
+Belirtilen `boardId`'ye sahip panoyu siler.
+
+**Endpoint:** `GET /api/v1/boards/:boardId/members`  
+Belirtilen panodaki üyeleri getirir.
+
+**Endpoint:** `POST /api/v1/boards/:boardId/members`  
+Belirtilen panoya yeni bir üye ekler.
+
+**Endpoint:** `DELETE /api/v1/boards/:boardId/members/:memberId`  
+Belirtilen üyeyi panodan çıkarır.
+
+---
+
+## Lists (Listeler)
+
+**Endpoint:** `GET /api/v1/boards/:boardId/lists`  
+Belirtilen panodaki tüm listeleri getirir.
+
+
+**Endpoint:** `POST /api/v1/boards/:boardId/lists`  
+Belirtilen panoya yeni bir liste ekler.
+
+
+**Endpoint:** `PATCH /api/v1/boards/:boardId/lists/:listId`  
+Belirtilen `listId`'ye sahip listeyi günceller.
+
+
+**Endpoint:** `DELETE /api/v1/boards/:boardId/lists/:listId`  
+Belirtilen `listId`'ye sahip listeyi siler.
+
+---
+
+## Cards (Kartlar)
+
+**Endpoint:** `GET /api/v1/boards/:boardId/lists/:listId/cards/:cardId`  
+Belirtilen `cardId`'ye sahip kartı getirir.
+
+
+**Endpoint:** `POST /api/v1/boards/:boardId/lists/:listId/cards`  
+Belirtilen listeye yeni bir kart ekler.
+
+**Endpoint:** `PATCH /api/v1/boards/:boardId/lists/:listId/cards/:cardId`  
+Belirtilen `cardId`'ye sahip kartın içeriğini günceller.
+
+**Endpoint:** `DELETE /api/v1/boards/:boardId/lists/:listId/cards/:cardId`  
+Belirtilen `cardId`'ye sahip kartı siler.
+
+**Endpoint:** `POST /api/v1/reminder/boards/:boardId/lists/:listId/cards/:cardId`  
+Belirtilen karta bir hatırlatıcı ekler.
+
+---
+
+## Yetkilendirme
+Tüm endpointler `authMiddleware` ile korunmaktadır. API'yi kullanmak için yetkilendirme gereklidir.
+
 
 ### Kullanıcı Kaydı (Register)
 
